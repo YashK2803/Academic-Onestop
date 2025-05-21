@@ -1,0 +1,78 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+
+
+
+    <!-- Main Content -->
+    <div class="col-md-9">
+      <!-- Feedback Form -->
+      <div class="card shadow-sm mb-4">
+        <div class="card-body">
+          <h3 class="mb-3 text-primary">Submit Feedback</h3>
+          <form method="POST" action="/student/feedback/submit">
+            <div class="row">
+              <div class="col-md-6 mb-3">
+                <label for="courseId" class="form-label">Course ID</label>
+                <input type="text" class="form-control" id="courseId" name="courseId" required>
+              </div>
+              <div class="col-md-6 mb-3">
+                <label for="instructorId" class="form-label">Instructor ID</label>
+                <input type="text" class="form-control" id="instructorId" name="instructorId">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-4 mb-3">
+                <label for="rating" class="form-label">Rating</label>
+                <select class="form-select" id="rating" name="rating" required>
+                  <option value="1">1 - Poor</option>
+                  <option value="2">2</option>
+                  <option value="3">3 - Average</option>
+                  <option value="4">4</option>
+                  <option value="5">5 - Excellent</option>
+                </select>
+              </div>
+              <div class="col-md-8 mb-3">
+                <label for="comments" class="form-label">Comments</label>
+                <textarea class="form-control" id="comments" name="comments" rows="2"></textarea>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-success btn-lg w-100 mt-2">Submit Feedback</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Feedback Table -->
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h4 class="mb-3 text-primary">My Feedback</h4>
+          <div class="table-responsive">
+            <table class="table table-bordered table-striped align-middle">
+              <thead>
+                <tr>
+                  <th>Course</th>
+                  <th>Instructor</th>
+                  <th>Rating</th>
+                  <th>Comments</th>
+                  <th>Date</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% feedbacks.forEach(function(f) { %>
+                  <tr>
+                    <td><%= f.courseId %></td>
+                    <td><%= f.instructorName || '' %></td> <!-- Display the instructor's name -->
+                    <td><%= f.rating %></td>
+                    <td><%= f.comments %></td>
+                    <td><%= f.date.toDateString() %></td>
+                  </tr>
+                <% }) %>
+              </tbody>
+              
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer') %>

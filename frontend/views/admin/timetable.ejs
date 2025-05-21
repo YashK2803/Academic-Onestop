@@ -1,0 +1,53 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+
+<div class="container mt-4">
+  <h2>All Timetable Entries</h2>
+  <% if (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+  <% } %>
+  <a href="/admin/timetable/add" class="btn btn-success mb-3">Add Timetable Entry</a>
+  <table class="table table-bordered table-striped">
+    <thead class="thead-dark">
+      <tr>
+        <th>Class ID</th>
+        <th>Day</th>
+        <th>Start Time</th>
+        <th>End Time</th>
+        <th>Subject</th>
+        <th>Teacher</th>
+        <th>Room</th>
+        <!-- Add Edit/Delete columns if needed -->
+      </tr>
+    </thead>
+    <tbody>
+      <% if (timetables && timetables.length > 0) { %>
+        <% timetables.forEach(function(t) { %>
+          <tr>
+            <td><%= t.classId %></td>
+            <td><%= t.day %></td>
+            <td><%= t.startTime %></td>
+            <td><%= t.endTime %></td>
+            <td><%= t.subject %></td>
+            <td><%= t.teacherName || t.teacher %></td>
+            <td><%= t.room %></td>
+            <!--
+            <td>
+              <a href="/admin/timetable/edit/<%= t.id %>" class="btn btn-sm btn-primary">Edit</a>
+              <form action="/admin/timetable/delete/<%= t.id %>" method="POST" style="display:inline;">
+                <button type="submit" class="btn btn-sm btn-danger" onclick="return confirm('Delete this entry?')">Delete</button>
+              </form>
+            </td>
+            -->
+          </tr>
+        <% }) %>
+      <% } else { %>
+        <tr>
+          <td colspan="7" class="text-center">No timetable entries found.</td>
+        </tr>
+      <% } %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('../partials/footer') %>

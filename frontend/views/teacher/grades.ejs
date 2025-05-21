@@ -1,0 +1,41 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+
+<div class="container mt-4">
+  <h2>Grades</h2>
+
+  <% if (error && error.length > 0) { %>
+    <div class="alert alert-danger"><%= error %></div>
+  <% } %>
+
+  <!-- Grades Table -->
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Course</th>
+        <th>Semester</th>
+        <th>Grade</th>
+        <th>Graded By</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% grades.forEach(function(grade) { %>
+        <tr>
+          <td><%= grade.studentName %> (<%= grade.studentId %>)</td>
+          <td><%= grade.course %></td>
+          <td><%= grade.semester %></td>
+          <td><%= grade.grade %></td>
+          <td><%= grade.gradedBy %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+
+  <!-- Add Grade Button -->
+  <div class="mt-4">
+    <a href="/teacher/grades/add" class="btn btn-success">Add Grade</a>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Academic OneStop Unified Educational Platform</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/[email protected]/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="bg-dark text-light py-3 mb-4">
+    <div class="container d-flex justify-content-between align-items-center">
+      <div>
+        <img src="assets/logo.png" alt="Platform Logo" height="40" class="me-2">
+        <span class="h4 align-middle">Academic OneStop</span>
+      </div>
+      <nav>
+        <a href="auth/login.ejs" class="btn btn-outline-light me-2">Login</a>
+        <a href="auth/register.ejs" class="btn btn-success">Register</a>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="container text-center">
+      <h1 class="mb-4">Welcome to Academic OneStop</h1>
+      <p class="lead mb-5">
+        A unified platform for students, teachers, and administrators.<br>
+        Streamline attendance, grades, assignments, resources, communication, analytics, and more.
+      </p>
+      <div class="row justify-content-center mb-5">
+        <div class="col-md-4">
+          <div class="card shadow-sm mb-3">
+            <div class="card-body">
+              <h5 class="card-title">Students</h5>
+              <p class="card-text">Access your academic records, assignments, timetable, and resources in one place.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm mb-3">
+            <div class="card-body">
+              <h5 class="card-title">Teachers</h5>
+              <p class="card-text">Manage attendance, grades, assignments, and communicate with your classes seamlessly.</p>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-4">
+          <div class="card shadow-sm mb-3">
+            <div class="card-body">
+              <h5 class="card-title">Administrators</h5>
+              <p class="card-text">Oversee users, academic processes, analytics, and ensure smooth institutional operations.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a href="auth/login" class="btn btn-primary btn-lg me-3">Login</a>
+      <a href="auth/register" class="btn btn-outline-success btn-lg">Register</a>
+    </div>
+  </main>
+  <footer class="bg-dark text-light text-center py-3 mt-5">
+    &copy; <span id="year"></span> Academic OneStop Unified Educational Platform. All rights reserved.
+  </footer>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/[email protected]/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

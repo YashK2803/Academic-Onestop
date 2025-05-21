@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+
+<div class="container mt-4">
+  <h2>Create Assignment</h2>
+  <% if (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+  <% } %>
+  <form method="POST" action="/teacher/assignments/create">
+    <div class="form-row">
+      <div class="form-group col-md-3">
+        <label for="title">Title</label>
+        <input type="text" class="form-control" name="title" required>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="description">Description</label>
+        <input type="text" class="form-control" name="description">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="dueDate">Due Date</label>
+        <input type="date" class="form-control" name="dueDate" required>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="classId">Class ID</label>
+        <input type="text" class="form-control" name="classId" required>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success mt-3">Submit Assignment</button>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>

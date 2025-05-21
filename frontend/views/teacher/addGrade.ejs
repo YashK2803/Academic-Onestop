@@ -1,0 +1,41 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+
+<div class="container mt-4">
+  <h2>Add Grade</h2>
+
+  <% if (error && error.length > 0) { %>
+    <div class="alert alert-danger"><%= error %></div>
+  <% } %>
+
+  <!-- Add Grade Form -->
+  <form method="POST" action="/teacher/grades/add">
+    <div class="form-group">
+      <label for="studentId">Student</label>
+      <select class="form-control" name="studentId" required>
+        <% students.forEach(function(student) { %>
+          <option value="<%= student.id %>"><%= student.name %> (<%= student.id %>)</option>
+        <% }) %>
+      </select>
+    </div>
+
+    <div class="form-group">
+      <label for="course">Course</label>
+      <input type="text" class="form-control" name="course" required>
+    </div>
+
+    <div class="form-group">
+      <label for="semester">Semester</label>
+      <input type="text" class="form-control" name="semester" required>
+    </div>
+
+    <div class="form-group">
+      <label for="grade">Grade</label>
+      <input type="text" class="form-control" name="grade" required>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Add Grade</button>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>

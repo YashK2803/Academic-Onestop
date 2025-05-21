@@ -1,0 +1,54 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+
+<div class="container mt-4">
+  <h2>Edit User</h2>
+
+  <% if (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+  <% } %>
+
+  <form method="POST" action="/admin/editUser/<%= userToEdit.id %>">
+    <div class="form-row">
+      <div class="form-group col-md-6">
+        <label for="name">Full Name</label>
+        <input type="text" class="form-control" name="name" value="<%= userToEdit.name %>" required>
+      </div>
+      <div class="form-group col-md-6">
+        <label for="email">Email</label>
+        <input type="email" class="form-control" name="email" value="<%= userToEdit.email %>" required>
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="role">Role</label>
+        <select class="form-control" name="role" required>
+          <option value="student" <%= userToEdit.role === 'student' ? 'selected' : '' %>>Student</option>
+          <option value="teacher" <%= userToEdit.role === 'teacher' ? 'selected' : '' %>>Teacher</option>
+          <option value="admin" <%= userToEdit.role === 'admin' ? 'selected' : '' %>>Admin</option>
+        </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="department">Department</label>
+        <input type="text" class="form-control" name="department" value="<%= userToEdit.department || '' %>">
+      </div>
+      <div class="form-group col-md-4">
+        <label for="enrollmentNo">Enrollment No.</label>
+        <input type="text" class="form-control" name="enrollmentNo" value="<%= userToEdit.enrollmentNo || '' %>">
+      </div>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="employeeId">Employee ID</label>
+        <input type="text" class="form-control" name="employeeId" value="<%= userToEdit.employeeId || '' %>">
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Update User</button>
+    <a href="/admin/manageUsers" class="btn btn-secondary mt-3">Cancel</a>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>

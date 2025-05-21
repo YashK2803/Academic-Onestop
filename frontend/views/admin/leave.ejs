@@ -1,0 +1,41 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+<div class="container mt-4">
+  <h2>Leave Applications</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>From</th>
+        <th>To</th>
+        <th>Type</th>
+        <th>Reason</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% leaves.forEach(function(l) { %>
+        <tr>
+          <td><%= l.userName %></td> <!-- Fixed this too -->
+          <td><%= new Date(l.startDate).toDateString() %></td> <!-- FIX -->
+          <td><%= new Date(l.endDate).toDateString() %></td>   <!-- FIX -->
+          <td><%= l.type %></td>
+          <td><%= l.reason %></td>
+          <td><%= l.status %></td>
+          <td>
+            <% if(l.status === 'Pending') { %>
+              <form action="/admin/leave/approve/<%= l.id %>" method="POST" style="display:inline;">
+                <button class="btn btn-success btn-sm">Approve</button>
+              </form>
+              <form action="/admin/leave/reject/<%= l.id %>" method="POST" style="display:inline;">
+                <button class="btn btn-danger btn-sm">Reject</button>
+              </form>
+            <% } %>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>    
+  </table>
+</div>
+<%- include('../partials/footer') %>

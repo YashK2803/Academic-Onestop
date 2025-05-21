@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+<div class="container mt-4">
+  <h2>Attendance Records</h2>
+  <form class="form-inline mb-3" method="GET" action="/admin/attendance">
+    <input type="text" class="form-control mr-2" name="studentId" placeholder="Student ID">
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Course</th>
+        <th>Marked By</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% attendance.forEach(function(a) { %>
+        <tr>
+          <td><%= a.studentName %> (<%= a.studentId %>)</td>
+          <td><%= a.date.toDateString() %></td>
+          <td><%= a.status %></td>
+          <td><%= a.course %></td>
+          <td><%= a.markedByName || '' %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<%- include('../partials/footer') %>

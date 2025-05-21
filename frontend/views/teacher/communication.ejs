@@ -1,0 +1,34 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+
+<div class="container mt-4">
+  <h2>Communication Center</h2>
+
+  <div class="mb-3 text-right">
+    <a href="/teacher/communication/send" class="btn btn-primary">Send Message</a>
+  </div>
+
+  <h4>My Messages (Sent & Received)</h4>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>From</th>
+        <th>To</th>
+        <th>Content</th>
+        <th>Sent At</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% messages.forEach(function(m) { %>
+        <tr>
+          <td><%= m.from.name %></td>
+          <td><%= m.to.name %></td>
+          <td><%= m.content %></td>
+          <td><%= m.sentAt.toLocaleString() %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('../partials/footer') %>

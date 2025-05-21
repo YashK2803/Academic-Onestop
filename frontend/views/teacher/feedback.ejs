@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+<div class="container mt-4">
+  <h2>Feedback Received</h2>
+
+  <!-- Table to display feedback given to the logged-in teacher -->
+  <table class="table table-striped mt-4">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Course</th>
+        <th>Rating</th>
+        <th>Comments</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% feedbacks.forEach(function(f) { %>
+        <!-- Only show feedback where instructorId matches the logged-in teacher's ID -->
+        <% if (f.instructorId === user.id) { %>
+          <tr>
+            <td><%= f.userId.name %></td>
+            <td><%= f.courseId %></td>
+            <td><%= f.rating %></td>
+            <td><%= f.comments %></td>
+            <td><%= f.date.toDateString() %></td>
+          </tr>
+        <% } %>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<%- include('../partials/footer') %>

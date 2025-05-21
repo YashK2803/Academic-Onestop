@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+<div class="container mt-4">
+  <h2>My Grades</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Course</th>
+        <th>Semester</th>
+        <th>Grade</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% grades.forEach(function(g) { %>
+        <tr>
+          <td><%= g.course %></td>
+          <td><%= g.semester %></td>
+          <td><%= g.grade %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+    
+  </table>
+</div>
+<%- include('../partials/footer') %>

@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+
+<div class="container mt-4">
+  <h2>Add Event</h2>
+
+  <% if (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+  <% } %>
+
+  <form action="/admin/calendar/addEvent" method="POST">
+    <div class="mb-3">
+      <label for="title" class="form-label">Event Title</label>
+      <input type="text" class="form-control" id="title" name="title" required>
+    </div>
+    <div class="mb-3">
+      <label for="eventDate" class="form-label">Event Date</label>
+      <input type="date" class="form-control" id="eventDate" name="eventDate" required>
+    </div>
+    <div class="mb-3">
+      <label for="description" class="form-label">Description</label>
+      <textarea class="form-control" id="description" name="description"></textarea>
+    </div>
+    <button type="submit" class="btn btn-primary">Add Event</button>
+  </form>
+
+  <a href="/admin/calendar" class="btn btn-secondary mt-3">Back to Calendar</a>
+</div>
+
+<%- include('../partials/footer') %>

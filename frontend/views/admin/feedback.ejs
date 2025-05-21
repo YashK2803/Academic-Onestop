@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+<div class="container mt-4">
+  <h2>Feedback Overview</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>User</th>
+        <th>Course</th>
+        <th>Instructor</th>
+        <th>Rating</th>
+        <th>Comments</th>
+        <th>Date</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% feedbacks.forEach(function(f) { %>
+        <tr>
+          <td><%= f.user.name %></td>
+          <td><%= f.courseId %></td>
+          <td><%= f.instructor ? f.instructor.name : '' %></td>
+          <td><%= f.rating %></td>
+          <td><%= f.comments %></td>
+          <td><%= f.date.toDateString() %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<%- include('../partials/footer') %>

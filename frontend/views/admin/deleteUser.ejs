@@ -1,0 +1,27 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+
+<div class="container mt-4">
+  <h2>Delete User</h2>
+
+  <% if (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+  <% } %>
+
+  <div class="alert alert-warning">
+    <strong>Are you sure you want to delete this user?</strong>
+    <ul>
+      <li><strong>Name:</strong> <%= userToDelete.name %></li>
+      <li><strong>Email:</strong> <%= userToDelete.email %></li>
+      <li><strong>Role:</strong> <%= userToDelete.role %></li>
+    </ul>
+
+    <!-- Make sure userToDelete.id is defined! -->
+    <form method="POST" action="/admin/deleteUser/<%= userToDelete.id %>">
+      <button type="submit" class="btn btn-danger">Yes, Delete</button>
+      <a href="/admin/manageUsers" class="btn btn-secondary">Cancel</a>
+    </form>
+  </div>
+</div>
+
+<%- include('../partials/footer') %>

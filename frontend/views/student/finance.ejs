@@ -1,0 +1,37 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+<div class="container mt-4">
+  <h2>My Finance Records</h2>
+  
+  <!-- Payment Form (Link to Pay Page) -->
+  <a href="/student/finance/pay" class="btn btn-success mb-3">Pay</a>
+
+  <!-- Payments Table -->
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Amount</th>
+        <th>Method</th>
+        <th>Description</th>
+        <th>Date</th>
+        <th>Receipt</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% payments.forEach(function(p) { %>
+        <tr>
+          <td><%= p.amount %></td>
+          <td><%= p.method %></td>
+          <td><%= p.description %></td>
+          <td><%= new Date(p.date).toDateString() %></td>
+          <td>
+            <% if(p.receiptUrl) { %>
+              <a href="<%= p.receiptUrl %>" target="_blank">View</a>
+            <% } %>
+          </td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<%- include('../partials/footer') %>

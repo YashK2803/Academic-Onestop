@@ -1,0 +1,25 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+<div class="container mt-4">
+  <h2>Make a Payment</h2>
+  <form class="mb-3" method="POST" action="/student/finance/pay">
+    <div class="form-group">
+      <label for="amount">Amount</label>
+      <input type="number" class="form-control" name="amount" required>
+    </div>
+    <div class="form-group">
+      <label for="method">Payment Method</label>
+      <select class="form-control" name="method" required>
+        <option value="Online">Online</option>
+        <option value="Cash">Cash</option>
+        <option value="Cheque">Cheque</option>
+      </select>
+    </div>
+    <div class="form-group">
+      <label for="description">Description</label>
+      <input type="text" class="form-control" name="description">
+    </div>
+    <button type="submit" class="btn btn-primary mt-2">Pay</button>
+  </form>
+</div>
+<%- include('../partials/footer') %>
