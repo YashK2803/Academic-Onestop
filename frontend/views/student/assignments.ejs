@@ -1,0 +1,49 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h2 class="mb-4 text-primary">My Assignments</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Title</th>
+              <th>Due Date</th>
+              <th>Status</th>
+              <th>Submission</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% assignments.forEach(function(a) { %>
+              <tr>
+                <td><%= a.title %></td>
+                <td><%= new Date(a.dueDate).toDateString() %></td>
+                <td>
+                  <% if (a.submission) { %>
+                    <span class="badge bg-success">Submitted</span>
+                  <% } else { %>
+                    <span class="badge bg-warning text-dark">Pending</span>
+                  <% } %>
+                </td>
+                <td>
+                  <% if (a.submission) { %>
+                    <span class="text-success">Submitted on <%= new Date(a.submission.submittedAt).toDateString() %></span>
+                  <% } else { %>
+                    <form method="POST" action="/student/assignments/submit" enctype="multipart/form-data" class="d-flex align-items-center gap-2">
+                      <input type="hidden" name="assignmentId" value="<%= a.id %>">
+                      <input type="file" name="submission" class="form-control form-control-sm" required>
+                      <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                    </form>
+                  <% } %>
+                </td>
+              </tr>
+            <% }) %>
+          </tbody>
+          
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer') %>

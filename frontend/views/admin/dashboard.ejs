@@ -1,0 +1,38 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+<div class="container mt-4">
+  <h1>Admin Dashboard</h1>
+  <div class="row">
+    <div class="col-md-3 mb-3">
+      <a href="/admin/manageUsers" class="btn btn-primary btn-block">Manage Users</a>
+    </div>
+    <div class="col-md-3 mb-3">
+      <a href="/admin/attendance" class="btn btn-secondary btn-block">Attendance</a>
+    </div>
+    <div class="col-md-3 mb-3">
+      <a href="/admin/grades" class="btn btn-success btn-block">Grades</a>
+    </div>
+    <div class="col-md-3 mb-3">
+      <a href="/admin/leave" class="btn btn-info btn-block">Leave Management</a>
+    </div>
+    <div class="col-md-3 mb-3">
+      <a href="/admin/timetable" class="btn btn-warning btn-block">Timetables</a>
+    </div>
+    <div class="col-md-3 mb-3">
+      <a href="/admin/assignments" class="btn btn-danger btn-block">Assignments</a>
+    </div>
+    <div class="col-md-3 mb-3">
+      <a href="/admin/finance" class="btn btn-dark btn-block">Finance</a>
+    </div>
+    <div class="col-md-3 mb-3">
+      <a href="/admin/communication" class="btn btn-primary btn-block">Communication</a>
+    </div>
+    <div class="col-md-3 mb-3">
+      <a href="/admin/calendar" class="btn btn-secondary btn-block">Academic Calendar</a>
+    </div>
+    <div class="col-md-3 mb-3">
+      <a href="/admin/feedback" class="btn btn-success btn-block">Feedback</a>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer') %>

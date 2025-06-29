@@ -1,0 +1,42 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+
+<div class="container mt-4">
+  <h2>Attendance Records</h2>
+
+  <% if (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+  <% } %>
+
+  <a href="/teacher/attendance/mark" class="btn btn-success mb-3">Mark Attendance</a>
+
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Date</th>
+        <th>Status</th>
+        <th>Course</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% if (attendance && attendance.length > 0) { %>
+        <% attendance.forEach(function(a) { %>
+          <tr>
+            <td><%= a.studentName %> (ID: <%= a.studentId %>)</td>
+            <td><%= new Date(a.date).toLocaleDateString() %></td>
+            <td><%= a.status %></td>
+            <td><%= a.course || 'N/A' %></td>
+          </tr>
+        <% }) %>
+      <% } else { %>
+        <tr>
+          <td colspan="4" class="text-center">No attendance records found.</td>
+        </tr>
+      <% } %>
+    </tbody>
+    
+  </table>
+</div>
+
+<%- include('../partials/footer') %>

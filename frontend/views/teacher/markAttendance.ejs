@@ -1,0 +1,51 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+
+<div class="container mt-4">
+  <h2>Mark Attendance</h2>
+
+  <% if (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+  <% } %>
+
+  <form method="POST" action="/teacher/attendance/mark">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="studentId">Student</label>
+        <select class="form-control" name="studentId" required>
+          <option value="">-- Select Student --</option>
+          <% if (students && students.length > 0) { %>
+            <% students.forEach(function(student) { %>
+              <option value="<%= student.id %>"><%= student.name %> (ID: <%= student.id %>)</option>
+            <% }) %>
+          <% } else { %>
+            <option disabled>No students available</option>
+          <% } %>
+        </select>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="date">Date</label>
+        <input type="date" class="form-control" name="date" required>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="status">Status</label>
+        <select class="form-control" name="status" required>
+          <option value="Present">Present</option>
+          <option value="Absent">Absent</option>
+          <option value="On Leave">On Leave</option>
+        </select>
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="course">Course</label>
+        <input type="text" class="form-control" name="course" required>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Mark Attendance</button>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>

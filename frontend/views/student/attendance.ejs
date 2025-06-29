@@ -1,0 +1,34 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+<div class="container mt-4">
+  <div class="card shadow-sm">
+    <div class="card-body">
+      <h2 class="mb-4 text-primary">My Attendance</h2>
+      <div class="table-responsive">
+        <table class="table table-bordered table-striped align-middle">
+          <thead class="table-light">
+            <tr>
+              <th>Date</th>
+              <th>Status</th>
+              <th>Course</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% attendance.forEach(function(a) { %>
+              <tr>
+                <td><%= a.date.toDateString() %></td>
+                <td>
+                  <span class="badge <%= a.status === 'Present' ? 'bg-success' : (a.status === 'Absent' ? 'bg-danger' : 'bg-warning text-dark') %>">
+                    <%= a.status %>
+                  </span>
+                </td>
+                <td><%= a.course %></td>
+              </tr>
+            <% }) %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+<%- include('../partials/footer') %>

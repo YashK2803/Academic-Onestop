@@ -1,0 +1,56 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+<div class="container mt-4">
+  <h2>Add Timetable Entry</h2>
+  <% if (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+  <% } %>
+  <form method="POST" action="/admin/timetable/add">
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="classId">Class ID</label>
+        <input type="text" class="form-control" name="classId" required>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="day">Day</label>
+        <select class="form-control" name="day" required>
+          <option>Monday</option>
+          <option>Tuesday</option>
+          <option>Wednesday</option>
+          <option>Thursday</option>
+          <option>Friday</option>
+          <option>Saturday</option>
+        </select>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="startTime">Start Time</label>
+        <input type="time" class="form-control" name="startTime" required>
+      </div>
+      <div class="form-group col-md-2">
+        <label for="endTime">End Time</label>
+        <input type="time" class="form-control" name="endTime" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="subject">Subject</label>
+        <input type="text" class="form-control" name="subject" required>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="teacher">Teacher</label>
+        <select class="form-control" name="teacher" required>
+          <% teachers.forEach(function(t) { %>
+            <option value="<%= t.name %>"><%= t.name %></option>
+          <% }) %>
+        </select>
+      </div>
+      <div class="form-group col-md-4">
+        <label for="room">Room</label>
+        <input type="text" class="form-control" name="room" required>
+      </div>
+    </div>
+    <button type="submit" class="btn btn-success mt-3">Add Entry</button>
+    <a href="/admin/timetable" class="btn btn-secondary mt-3">Cancel</a>
+  </form>
+</div>
+<%- include('../partials/footer') %>

@@ -1,0 +1,33 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+<div class="container mt-4">
+  <h2>Grades Overview</h2>
+  <form class="form-inline mb-3" method="GET" action="/admin/grades">
+    <input type="text" class="form-control mr-2" name="studentId" placeholder="Student ID">
+    <button type="submit" class="btn btn-primary">Search</button>
+  </form>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Course</th>
+        <th>Semester</th>
+        <th>Grade</th>
+        <th>Graded By</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% grades.forEach(function(g) { %>
+        <tr>
+          <td><%= g.studentName%></td>        <!-- fixed -->
+          <td><%= g.course%></td>
+          <td><%= g.semester%></td>
+          <td><%= g.grade%></td>
+          <td><%= g.gradedByName || '' %></td> <!-- fixed -->
+        </tr>
+      <% }) %>
+    </tbody>
+    
+  </table>
+</div>
+<%- include('../partials/footer') %>

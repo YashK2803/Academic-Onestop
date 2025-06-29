@@ -1,0 +1,32 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+<div class="container mt-4">
+  <h2>My Timetable</h2>
+  <% if (timetable) { %>
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th>Day</th>
+          <th>Schedule</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% timetable.schedule.forEach(function(day) { %>
+          <tr>
+            <td><%= day.day %></td>
+            <td>
+              <% day.slots.forEach(function(slot) { %>
+                <div>
+                  <strong><%= slot.subject %></strong> (<%= slot.startTime %> - <%= slot.endTime %>), <%= slot.teacher %>, Room: <%= slot.room %>
+                </div>
+              <% }) %>
+            </td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  <% } else { %>
+    <div class="alert alert-info">No timetable found.</div>
+  <% } %>
+</div>
+<%- include('../partials/footer') %>

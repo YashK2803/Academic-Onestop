@@ -1,0 +1,30 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+<div class="container mt-4">
+  <h2>Leave Applications</h2>
+  <a href="/student/leave/apply" class="btn btn-primary mb-3">Apply for Leave</a>
+  
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>From</th>
+        <th>To</th>
+        <th>Type</th>
+        <th>Reason</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% leaves.forEach(function(l) { %>
+        <tr>
+          <td><%= l.from.toLocaleDateString() %></td>  <!-- Format date to readable format -->
+          <td><%= l.to.toLocaleDateString() %></td>    <!-- Format date to readable format -->
+          <td><%= l.type %></td>
+          <td><%= l.reason %></td>
+          <td><%= l.status %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+<%- include('../partials/footer') %>

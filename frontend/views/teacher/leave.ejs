@@ -1,0 +1,34 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+
+<div class="container mt-4">
+  <h2>My Leave Applications</h2>
+
+  <!-- Apply Leave button linking to a new page -->
+  <a href="/teacher/leave/apply" class="btn btn-info mb-3">Apply for Leave</a>
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>From</th>
+        <th>To</th>
+        <th>Type</th>
+        <th>Reason</th>
+        <th>Status</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% leaves.forEach(function(l) { %>
+        <tr>
+          <td><%= l.startDate.toDateString() %></td>
+          <td><%= l.endDate.toDateString() %></td>
+          <td><%= l.type %></td>
+          <td><%= l.reason %></td>
+          <td><%= l.status %></td>
+        </tr>
+      <% }) %>
+    </tbody>
+  </table>
+</div>
+
+<%- include('../partials/footer') %>

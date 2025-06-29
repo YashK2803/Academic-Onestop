@@ -1,0 +1,79 @@
+<%- include('../partials/header') %>
+<%- include('../partials/navbar', { user: user }) %>
+
+<div class="container mt-4">
+  <h2>Add Assignment</h2>
+
+  <% if (error) { %>
+    <div class="alert alert-danger"><%= error %></div>
+  <% } %>
+
+  <form method="POST" action="/admin/assignments/add">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input
+        type="text"
+        class="form-control"
+        id="title"
+        name="title"
+        required
+      >
+    </div>
+
+    <div class="form-group">
+      <label for="description">Description</label>
+      <textarea
+        class="form-control"
+        id="description"
+        name="description"
+        rows="3"
+        required
+      ></textarea>
+    </div>
+
+    <div class="form-row">
+      <div class="form-group col-md-4">
+        <label for="dueDate">Due Date</label>
+        <!-- this will post YYYY‑MM‑DD, which fits your DATE column -->
+        <input
+          type="date"
+          class="form-control"
+          id="dueDate"
+          name="dueDate"
+          required
+        >
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="classId">Class ID</label>
+        <input
+          type="text"
+          class="form-control"
+          id="classId"
+          name="classId"
+          required
+        >
+      </div>
+
+      <div class="form-group col-md-4">
+        <label for="createdBy">Assigned By</label>
+        <select
+          class="form-control"
+          id="createdBy"
+          name="createdBy"
+          required
+        >
+          <option value="" disabled selected>Choose a teacher…</option>
+          <% teachers.forEach(function(t) { %>
+            <option value="<%= t.id %>"><%= t.name %></option>
+          <% }) %>
+        </select>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-success mt-3">Add Assignment</button>
+    <a href="/admin/assignments" class="btn btn-secondary mt-3">Cancel</a>
+  </form>
+</div>
+
+<%- include('../partials/footer') %>
